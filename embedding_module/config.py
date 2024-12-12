@@ -14,7 +14,8 @@ DATA_DIR = PROJ_ROOT / "data"
 RAW_DATA_DIR = DATA_DIR / "raw"
 INTERIM_DATA_DIR = DATA_DIR / "interim"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
-EXTERNAL_DATA_DIR = DATA_DIR / "external"
+INDEX_DATA_DIR = DATA_DIR / "index"
+QUERY_DATA_DIR = DATA_DIR / "query"
 
 EMBED_MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2"
 
