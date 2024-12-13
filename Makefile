@@ -56,7 +56,7 @@ create_environment:
 ## Make Dataset
 .PHONY: data
 data: requirements
-	$(PYTHON_INTERPRETER) embedding_module/dataset.py
+	$(PYTHON_INTERPRETER) embedding_module/data_processing/dataset.py
 
 
 #################################################################################

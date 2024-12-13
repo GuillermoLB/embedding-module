@@ -6,7 +6,7 @@ from loguru import logger
 from tqdm import tqdm
 from transformers import AutoTokenizer, AutoModel
 
-from embedding_module.config import INTERIM_DATA_DIR, PROCESSED_DATA_DIR, EMBED_MODEL_ID
+from embedding_module.config.config import CHUNKED_DATA_DIR, EMBEDDED_DATA_DIR, EMBED_MODEL_ID
 
 app = typer.Typer()
 
@@ -43,8 +43,8 @@ def save_embeddings_to_jsonl(embeddings, output_path: Path):
 
 @app.command()
 def main(
-    interim_data_dir: Path = INTERIM_DATA_DIR,
-    processed_data_dir: Path = PROCESSED_DATA_DIR,
+    interim_data_dir: Path = CHUNKED_DATA_DIR,
+    processed_data_dir: Path = EMBEDDED_DATA_DIR,
 ):
     logger.info("Starting embedding generation...")
 

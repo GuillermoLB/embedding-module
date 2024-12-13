@@ -3,7 +3,7 @@ import json
 from transformers import AutoTokenizer, AutoModel
 import torch
 
-from embedding_module.config import EMBED_MODEL_ID, PROCESSED_DATA_DIR
+from embedding_module.config.config import EMBED_MODEL_ID, PROCESSED_DATA_DIR
 
 def initialize_model(model_id: str):
     """Initialize the model and tokenizer."""

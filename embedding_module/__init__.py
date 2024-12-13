@@ -1,1 +1,1 @@
-from embedding_module import config  # noqa: F401
+from embedding_module.config import config  # noqa: F401

@@ -7,17 +7,19 @@ from loguru import logger
 load_dotenv()
 
 # Paths
-PROJ_ROOT = Path(__file__).resolve().parents[1]
+PROJ_ROOT = Path(__file__).resolve().parents[2]  # Adjusted to navigate up two levels
 logger.info(f"PROJ_ROOT path is: {PROJ_ROOT}")
 
 DATA_DIR = PROJ_ROOT / "data"
-RAW_DATA_DIR = DATA_DIR / "raw"
-INTERIM_DATA_DIR = DATA_DIR / "interim"
-PROCESSED_DATA_DIR = DATA_DIR / "processed"
-INDEX_DATA_DIR = DATA_DIR / "index"
-QUERY_DATA_DIR = DATA_DIR / "query"
+CORPUS_DATA_DIR = DATA_DIR / "corpus"
+RAW_DATA_DIR = CORPUS_DATA_DIR / "raw"
+CHUNKED_DATA_DIR = CORPUS_DATA_DIR / "chunked"
+EMBEDDED_DATA_DIR = CORPUS_DATA_DIR / "embedded"
+INDEXED_DATA_DIR = CORPUS_DATA_DIR / "indexed"
+QUERY_DATA_DIR = DATA_DIR / "queries" / "query"
 
 EMBED_MODEL_ID = "sentence-transformers/all-MiniLM-L6-v2"
+MAX_TOKENS = 64
 
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
