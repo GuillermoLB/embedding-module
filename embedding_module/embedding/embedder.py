@@ -10,11 +10,13 @@ from embedding_module.config.config import CHUNKED_DATA_DIR, EMBEDDED_DATA_DIR, 
 
 app = typer.Typer()
 
+
 def load_chunks(input_path: Path):
     """Load chunks from a JSONL file."""
-    with open(input_path, 'r') as f:
+    with open(input_path, "r") as f:
         chunks = [json.loads(line) for line in f]
     return chunks
+
 
 def initialize_model(model_id: str):
     """Initialize the model and tokenizer."""
@@ -22,24 +24,24 @@ def initialize_model(model_id: str):
     model = AutoModel.from_pretrained(model_id)
     return tokenizer, model
 
+
 def generate_embeddings(chunks, tokenizer, model):
     """Generate embeddings for each chunk."""
     embeddings = []
     for chunk in tqdm(chunks, desc="Generating embeddings"):
-        inputs = tokenizer(chunk['chunk_text'], return_tensors='pt', truncation=True, padding=True)
+        inputs = tokenizer(chunk["chunk_text"], return_tensors="pt", truncation=True, padding=True)
         outputs = model(**inputs)
         embedding = outputs.last_hidden_state.mean(dim=1).detach().numpy().flatten()
-        embeddings.append({
-            "index": chunk["index"],
-            "embedding": embedding.tolist()
-        })
+        embeddings.append({"index": chunk["index"], "embedding": embedding.tolist()})
     return embeddings
+
 
 def save_embeddings_to_jsonl(embeddings, output_path: Path):
     """Save embeddings to a JSONL file."""
-    with open(output_path, 'w') as f:
+    with open(output_path, "w") as f:
         for embedding in embeddings:
-            f.write(json.dumps(embedding) + '\n')
+            f.write(json.dumps(embedding) + "\n")
+
 
 @app.command()
 def main(
@@ -72,6 +74,7 @@ def main(
         save_embeddings_to_jsonl(embeddings, output_path)
 
     logger.success("Embedding generation complete.")
+
 
 if __name__ == "__main__":
     app()
