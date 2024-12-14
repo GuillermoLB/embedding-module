@@ -58,6 +58,21 @@ create_environment:
 data: requirements
 	$(PYTHON_INTERPRETER) embedding_module/data_processing/dataset.py
 
+## Generate Embeddings
+.PHONY: embed
+embed:
+	$(PYTHON_INTERPRETER) embedding_module/embedding/embedder.py
+
+## Build Index
+.PHONY: index
+index:
+	$(PYTHON_INTERPRETER) embedding_module/indexing/indexer.py build-index
+
+## Query Index
+.PHONY: query
+query:
+	$(PYTHON_INTERPRETER) embedding_module/indexing/indexer.py query-index --query-embedding-file path/to/query_embedding.json --top-k 5
+
 
 #################################################################################
 # Self Documenting Commands                                                     #
